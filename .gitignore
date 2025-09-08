@@ -16,6 +16,5 @@ docs.json
 coverage
 /secrets
 # Secrets
-.env
-.env.*
 !.env.example
+config.bat
