@@ -8,10 +8,10 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "build": "pnpm run build-date-fns && tsc && pnpm run build-tsc",
-    "build-date-fns": "rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
-    "build-tsc": "tsc --outDir dist",
-    "build-esbuild": "esbuild constants.ts example.ts fp.ts misc.ts --outdir=dist",
+    "build": "node init && pnpm run build-date-fns && tsc && pnpm run build-tsc",
+    "build-date-fns": "node init && rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
+    "build-tsc": "node init && tsc --outDir dist",
+    "build-esbuild": "node init && esbuild constants.ts example.ts fp.ts misc.ts --outdir=dist",
     "test": "pnpm run test-example && pnpm run test-fp && pnpm run test-misc && pnpm run test-constants",
     "test-example": "test $(env TZ=UTC node ./dist/example.js) = true",
     "test-fp": "test $(env TZ=UTC node ./dist/fp.js) = true",

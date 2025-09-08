@@ -11,9 +11,9 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "pnpm run build-date-fns && pnpm run build-webpack",
-    "build-date-fns": "rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
-    "build-webpack": "webpack",
+    "build": "node init && pnpm run build-date-fns && pnpm run build-webpack",
+    "build-date-fns": "node init && rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
+    "build-webpack": "node init && webpack",
     "stats-size": "echo \"Minimal size: $(gzip-size dist/minimal.min.js)\nFormat size: $(gzip-size dist/example.min.js)\nFP size: $(gzip-size dist/fp.min.js)\nMisc size: $(gzip-size dist/misc.min.js)\"",
     "test": "pnpm run test-example && pnpm run test-fp && pnpm run test-misc && pnpm run test-constants",
     "test-example": "test $(env TZ=UTC node ./dist/example.js) = true",

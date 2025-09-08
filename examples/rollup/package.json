@@ -14,9 +14,9 @@
     "rollup": "^3.28.1"
   },
   "scripts": {
-    "build": "pnpm run build-date-fns && pnpm run build-rollup",
-    "build-date-fns": "rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
-    "build-rollup": "rollup --config",
+    "build": "node init && pnpm run build-date-fns && pnpm run build-rollup",
+    "build-date-fns": "node init && rm -rf node_modules/date-fns && cp -r ../../lib node_modules/date-fns || env PACKAGE_OUTPUT_PATH=\"$(pwd)/node_modules/date-fns\" ../../scripts/build/package.sh",
+    "build-rollup": "node init && rollup --config",
     "stats-size": "echo \"Minimal size: $(gzip-size dist/minimal.js)\nFormat size: $(gzip-size dist/example.js)\nFP size: $(gzip-size dist/fp.js)\nMisc size: $(gzip-size dist/misc.js)\"",
     "test": "pnpm run test-example && pnpm run test-fp && pnpm run test-misc && pnpm run test-constants",
     "test-example": "test $(env TZ=UTC node ./dist/example.js) = true",
